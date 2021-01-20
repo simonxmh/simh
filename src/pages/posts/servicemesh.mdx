@@ -1,0 +1,91 @@
+---
+slug: servicemesh
+title: Service Mesh - Tools and Trends for 2021
+date: 2021-01-20
+author: simh
+tags:
+  - servicemesh
+---
+
+## Service Mesh - Tools and Trends for 2021
+
+https://medium.com/pradpoddar/service-mesh-tools-and-trends-for-those-who-want-to-adopt-84a6fc2bc2c
+
+Service mesh is a dedicated infrastrucure solution to operation perspective of network interactions between microservices.
+
+Typically it takes care of:
+
+- Traffic management
+  - http, https, http2, grpc
+  - dynamic routing like conditional, weighting, mirroring
+  - resiliency through retry logic, circuit breaker, timeout setting
+  - testing through fault injection
+
+- Policy enforcement
+  - access control
+  - rate limits
+  - quota
+- Security
+  - mTLS, certificate management, external CA
+  - secure naming
+  - authentication in request or peer mode
+  - authorization allowing both allow or deny actions and CRD
+- Observability
+  - metrics at proxy or service level
+  - distributed tracing
+  - access logs
+- platform support
+  - k8s
+  - servers
+
+
+Use service mesh when
+- Cluster is multi-tenant or running sensitive workloads
+- Need the capabilities of the tool, e2e encryption, observability ..et c
+  
+
+## Service Mesh Interface
+
+SMI is standard interface defining a common, portable API to give interoperability across difference service meshes. It helps standardization.
+
+## Istio
+
+full-featured, heavy-weight service mesh. It uses envoy has sidecar, the control plane called istiod has:
+- pilot : abstracting platform specific service discovery mechanisms, and use a standard format that the envoy api can use. Distributes authentication policies and secure naming information to proxies. It also implements traffic management like canary, retry.
+- Citadel : key and certificate management. wathces lifetime of certificate and rotates the certificates by rewriting secrets.
+- Galley : abstracts and gives config to components
+- Mixer: enforces access control and usage policies. Collects telemetry. Intermediate layer between istio compoennts and istio-based services.
+
+Choose when you need the capabilities, mesh extension is needed outside of k8s. multi-mesh or mult-cluster or mult-network is needed in deployment model.
+
+## Linkerd
+
+Uses linkerd-proxy developed in Rust. Control plane has:
+- Controller: public-api container that gives the api for the CLI and dashboard.
+- Destination gets looked up by proxies in data plane
+- Identity
+- Proxy-injector receives webhook requests when pod gets made and adds an initcontainer and proxy sidecar itself
+- Tap receives request from CLI and dashboard
+- Web: linkerd dashboard
+
+Suggseted:
+-k8s, easy, lightweight, low latency and low overhead
+
+## Consul Connect
+
+Consul is multi data center aware service networking solution. Connect provides service mesh capabilities.
+
+Implements data plane using pluggable proxy, which means you can use its default built-in L4 proxy or Envoy or any proxy of your choice.
+- server: consul agent in server mode, need many of the servers to maintain cluster state
+- client: consul agent in lightweight client mode. Each node needs a client agent running. It brokers config and policy between workloads.
+
+Suited for:
+- multi data center use cases
+- Extending existing consul workloads
+- mesh across k8s and virtual/physical servers.
+
+## Other
+
+- Kyma
+- Open Service mesh
+- Traefik Mesh
