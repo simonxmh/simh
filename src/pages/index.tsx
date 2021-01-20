@@ -3,6 +3,8 @@ import BasicMeta from "../components/meta/BasicMeta";
 import OpenGraphMeta from "../components/meta/OpenGraphMeta";
 import TwitterCardMeta from "../components/meta/TwitterCardMeta";
 import { SocialList } from "../components/SocialList";
+import { TerminalAccess } from "../components/TerminalAccess";
+
 
 export default function Index() {
   return (
@@ -15,9 +17,10 @@ export default function Index() {
           <h1>
             Hi, I'm Simon<span className="fancy">.</span>
           </h1>
-          <span className="handle">@simonxmhuang</span>
+          <span className="handle">@simh</span>
           <h2>This is my collection of thoughts.</h2>
           <SocialList />
+          <TerminalAccess />
         </div>
       </div>
       <style jsx>{`
