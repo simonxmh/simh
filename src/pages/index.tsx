@@ -19,8 +19,9 @@ export default function Index() {
           </h1>
           <span className="handle">@simonxmhuang</span>
           <h2>This is my collection of thoughts.</h2>
+          
           <SocialList />
-          <TerminalAccess />
+          
         </div>
       </div>
       <style jsx>{`
