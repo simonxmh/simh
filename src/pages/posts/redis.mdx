@@ -8,8 +8,6 @@ tags:
   - database
 ---
 
-The in-memory key-value store noSQL database
-
 ## In Memory, key-value store/ noSQL
 
 - key is a string, value is pretty much anything
@@ -48,16 +46,3 @@ The in-memory key-value store noSQL database
 - docker run --name rdb -p 6379:6379 redis
 
 - docker exec -it rds redis-cli
-
-### CLI Actions
-
-- set key:
-  - set name "Simon"
-- get <key>
-  - get name
-- set nametemp "Edmond" EX 10 // expires in 10 seconds
-- exists <key> //returns true false of the key
-- del <key> 
-- append name "simon2"
-- subscribe <channel-name>
-- publish <channel-name> "<message>"
