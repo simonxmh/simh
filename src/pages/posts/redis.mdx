@@ -1,0 +1,65 @@
+---
+slug: servicemesh
+title: Redis
+date: 2021-04-25
+author: simh
+tags:
+  - redis
+  - database
+---
+
+# Redis
+
+The in-memory key-value store noSQL database
+
+## In Memory, key-value store/ noSQL
+
+- key is a string, value is pretty much anything
+- Redis is in-memory first (usually databases store in disk)
+- single-threaded (except with durability is enabled)
+
+## Optional Durability
+
+- optionally persist to disk
+- journaling: anytime I write a key, go ahead and write it in memory, but also write it to disk. Commit log(append only log)
+- snapshotting: instead of logging (which can cause delay), snapshot the whole thing (every 2 seconds or something) turn it to binary and flush it to disk
+  - if you write something to memory, and you lose power before the snapshot happens then you may have data loss
+- both happen asynchronously
+
+## Transport Protocol
+
+- uses tcp (always 2 way bidirectional connection)
+- request/response just like HTTP
+- message format is RESP (REdis Serialization Protocol)
+
+## PUB/SUB
+
+- just like kafka, you can subscribe to a channel(topic equivalent). you can publish to that channel, and the client who subscribes will get that message
+  - they can switch you to a push model because 2 way tcp protocol
+
+## Replication/Clustering
+
+- replication: one leader many followers model
+- clustering : shard data across multiple nodes, usually uses consistent hashing to distribute these shards
+- hybrid : nodes become leaders, and each leader will have part of data (shard), and each leader distributes to its followers it's replicate shards
+
+## Example
+
+- redis instance is a server. It's tcp. It needs to listen on a layer 4 port to an IP.
+- port number is 6379
+- docker run --name rdb -p 6379:6379 redis
+
+- docker exec -it rds redis-cli
+
+### CLI Actions
+
+- set key:
+  - set name "Simon"
+- get <key>
+  - get name
+- set nametemp "Edmond" EX 10 // expires in 10 seconds
+- exists <key> //returns true false of the key
+- del <key> 
+- append name "simon2"
+- subscribe <channel-name>
+- publish <channel-name> "<message>"

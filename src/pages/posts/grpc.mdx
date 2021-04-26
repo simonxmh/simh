@@ -1,0 +1,87 @@
+---
+slug: grpc
+title: gRPC
+date: 2021-03-02
+author: simh
+tags:
+  - protocol
+  - grpc
+---
+# gPRC
+
+Technology implementing RPC APIs that use HTTP/2 as underlying transport protocol
+
+## RPC model
+
+Remote Procedure Call model, addressable entities are procedures and data is hidden behind the procedures. Whereas in HTTP, addressable entities are "data entities" (resources), and behavior is hidden behind the data.
+
+## API 
+
+### REST 
+
+- api needs to think about data model
+- need to think about the endpoint, REST has GET and POST and things like that to consider as well
+- need to think about how to invoke and errors
+- think about efficiency of API
+- latency?
+- scalability 
+- load balancing?
+
+
+### GRPC
+
+- api is a contract saying: send me request and I'll send this response
+- part of CNCF
+- allows us to define request and response for RPC(remote procedure calls) and handles all the rest for you
+
+- RPC  : Remote Procedure Call.
+- In your CLIENT code, it looks like you're calling a function on the SERVER
+- directly invoking function on server => RPC Call
+
+- at the core of it, you need to define messages and services using **Protocol Buffers**
+- The rest of GRPC code is generated for you.
+- One .proto file works for 12 programming lanaguages (server and client)
+
+### OpenAPI
+
+- example:
+paths:
+  /pets/{petId}:
+    get:
+      operationId: getPetById
+      parameters:
+        - name: petId
+          in: path
+          required: true
+          description: The id of the pet to retrieve
+          schema:
+            type: string
+
+- APIs that expose values of {petID} and require client to use appropriate path to convert value into a URL is OpenAPI. This is called an operation
+- Advantage: similar to traditional RPC model, and allows definition of custom mapping of RPC concept to HTTP requests
+
+### When is gRPC better than OpenAPI
+
+- It is good at generating client-side programming lirbaries intuitive for programmers
+- Good performance: binary payload efficent to create and parse, exploits HTTP/2 for management of connections
+
+### Downsides of gRPC
+
+- requires special software on both client and server
+- may not integrate well with proxied apis which use adding removing or modifying headers, and parsing or modifying the body
+
+### Protocol Buffers
+
+- language agnostic
+- code can be generated for any language
+- data is binary and efficeintly serialized (small payloads)
+- convenient for big data transfer
+- easy API evolution using rules
+
+## Why should you learn protobuf and grpc
+
+- Google and services like pub/sub
+- Netflix
+- Square (replacement of all APIs)
+- CoreOS
+- CockroachDB

@@ -1,0 +1,132 @@
+---
+slug: kafka
+title: Kafka
+date: 2021-02-23
+author: simh
+tags:
+  - redis
+  - database
+---
+
+
+# Kafka 
+
+## Kafka Components
+
+Two abstractions:
+
+Producer - makes content to send to broker
+Consumer - consumes content from the broker
+Broker - server in between
+
+Topics - logical partition where you write content to
+
+When the producer writes - it has to specify which topic to write to. Consumer needs to specify which topic to read from.
+
+### Kafka Broker
+
+First server that users interact with, listening for TCP connections (9092 port)
+
+### Producer
+
+Can: 
+- Publish "John" to "Users" topic
+- Publish "Ed" to "Users" topic
+
+Each action is specify by position and location
+
+### Consumer
+
+Consume "Users" topic. It reads from position 0, then 1 ...
+
+### Scale
+
+We need to start sharding..
+
+User topic too big: Partition into two with name A-M and N-Z
+
+## Queue Vs Pub-sub
+
+Queue: message published once, consumed once
+
+Really good for job execution, run a few workers to pull the task and run it once. You don't want it to run more than once.
+
+PubSub: message published once, consumed many times. Want to broadcast the message to many consumers.
+
+Kafka asked: How can we do both???
+
+Answer: Consumer Group. 
+
+## Consumer group
+
+Conduct parallel consuming from partitions. It removes awareness of partition from consumers. Can consume parallel data.
+
+### Queue Behavior
+
+New consumer join group (responsible for all topics in the broker right now)
+
+Any time you consume, you get message from every one of partition 1 & partition 2 ...
+
+You add consumer to group: rebalanced (consumer 1 -> partition 1, consumer 2 -> partition 2)
+
+Consumer 3 cannot join the group (no partition to work with)
+
+Once consumer 1 reads from partition 1, it acts like a queue and pops off the first element. (Consumer 2 never reads the partition 1 element)
+
+If you want to have it act like a queue, put all the consumers in one group
+
+### PubSub Behavior
+
+Put each consumer in a unique group. A partition can be consumed by many consumers.
+
+You get parallel processing for free.
+
+## Distributed System
+
+Have a leader/follower setup (follower reads from leader)
+
+How do I know which broker is the leader?
+
+We want each broker to be a leader of a distinct partition.
+
+### Producing
+
+Write "zain" to topic "users" Partition 2. Any broker can gossip between each other and redirect it to the partition leader.
+
+The follower reads that information from the leader.
+
+## Zookeeper
+
+How do you keep track of which broker is the leader of which partition?
+
+It herds the broker cluster to follow the leader.
+
+## Example
+
+## Pros & Cons of Kafka
+
+### Pros
+
+Append Only commit log - every message you write goes to a log, it's append only. It always goes to the end, appending is very fast.
+
+Performance is amazing
+
+Distributed - can have one leader partition, sharded.
+
+Long polling:
+- rabbitMQ when trying to send info to consumer uses the push model, which means consumers cannot consume as fast as producer.
+-  Kafka makes consumer ask for a message: hey is there a message? (don't respond if no messages, I will wait.) If there is 700 bytes of message, push it to me. Don't send me empty responses.
+
+Event driven, pub sub and queue - use microservices with it.
+
+Scaling
+
+Parallel processing - can read the topics in parallel
+
+### Cons
+
+Zookeeper - lots of complaints about this at scale. Works weird with microservices, used for service discovery. makes it difficult to maintain
+
+Producer needs the explicit knowledge of partition can lead to problems
+
+Complex installation, configuration and management

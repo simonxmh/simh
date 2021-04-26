@@ -1,0 +1,132 @@
+---
+slug: osimodel
+title: OSI Model
+date: 2021-02-23
+author: simh
+tags:
+  - fundamental
+---
+
+
+
+- [OSI Model](#osi-model)
+  - [Layer 7 Application](#layer-7-application)
+  - [Layer 6 Presentation (optional, used for encryption)](#layer-6-presentation-optional-used-for-encryption)
+  - [Layer 5 Session](#layer-5-session)
+  - [Layer 4 Transport](#layer-4-transport)
+  - [Layer 3 Network](#layer-3-network)
+  - [Layer 2 Data Link](#layer-2-data-link)
+  - [Layer 1 Physical](#layer-1-physical)
+  - [Layer 2](#layer-2)
+  - [Layer 3](#layer-3)
+  - [Layer 4](#layer-4)
+  - [Layer 5](#layer-5)
+  - [Layer 6](#layer-6)
+  - [Layer 7](#layer-7)
+  - [Summary](#summary)
+
+# OSI Model
+
+OSI is Open Systems Interconnect
+
+Extra note:
+MAC address - media access control
+ie. 10.0.0.3
+
+## Layer 7 Application 
+
+GET / 10.0.0.3:80
+http headers cookies, content-type ...etc
+
+## Layer 6 Presentation (optional, used for encryption)
+
+Encrypt if necessary, used by TLS
+
+## Layer 5 Session
+
+Establish session tag it. Session id number. The session id will tag the encryption data. 
+
+## Layer 4 Transport
+
+A bunch of bytes encrypted. What it does is that it breaks down the packet into manageable segments. Each segment is tagged with a lot of info (like port number and source port)
+
+## Layer 3 Network
+
+Takes the blind data, it doesn't know the port, it just knows the segment. It attaches two pieces of info - the source IP and destination IP. This segment is now a **packet**.
+
+It sends the packet ( it doesn't check for errors )
+
+## Layer 2 Data Link
+
+Each packet is passed in. This touches the physical medium. It takes the packets and breaks them down. It then adds headers (target MAC Address) for these small packets called **frames**.
+
+D: us
+C: target machine/ web server 
+  - sometimes you don't know the MAC Address, in comes **ARP**, which converts IP address into MAC address
+
+## Layer 1 Physical
+
+010101010101011111101010000
+
+Sneaking in bit into electric signals. Transports it to the target.
+
+## Layer 2
+
+Sniffs a fixed size (frame size). It recognizes a frame, It sees whether or not it should receive this. It will match the C MAC address. 
+
+## Layer 3
+
+They take the frames and deal with the MAC Address header.
+The packet could be meant for your device but not your application.
+This layer removes the headers
+
+## Layer 4
+
+See the application running on the port specified. It sends the packet to the application.
+Remove the port number.
+
+## Layer 5
+
+Recognize that this is the particular session. (Each tcp connection has different sessions)
+
+## Layer 6
+
+decrypt
+
+## Layer 7
+
+Server says it gets the request.
+
+
+## Summary
+
+Layer 1 Physical
+This is the physical layer, in which 1 and 0 data bytes can be sent as electric signals, wifi, or light via "the wire"
+
+Layer 2 Data Link
+These are the separation of the data bytes into frames.
+Notably, the frames will identify the source and destination MAC addresses of the devices' network card.
+Since electrical signals travel in all directions in a network, the data frames reach all devices in the network.
+Once the data frame is able to identify that the device is not the intended destination, the frames drop.
+In an unsecured network, this is where a malicious application can choose to not drop the frames, and steal the data.
+
+Layer 3 Network
+Once layer 2 is done, it generalizes the frames from MAC addresses to IP addresses.
+
+Layer 4 Transport
+This tranport layer further generalizes the network layer IP address into source and destination ports.
+
+Layer 5 Session
+Since there may be several TCP connections to one server at a time, with identical packet information from layers 1 through 4, we need a way to distinguish the session by ID to tag it.
+
+Layer 6 Presentation
+This is where the resource might be secured/encrypted with HTTPS/TLS by scrambling the HTTP request string.
+I didn't know HTTPS encrypted anything. I thought it was only a way to identify the true identity of a website.
+Also, encryption might be accomplished via VPN.
+At this step, if the data is encrypted, the model decrypts the information to reach step 7.
+It might be possible that a malicious attack to steal data can be avoided by encrypting.
+"This is where you can get screwed if you are on public wifi...people can sniff your data."
+
+Layer 7 Application
+This is where a client device makes a request to a server device, such as a GET request.
+This request contains a whole bunch of information, such as headers, cookies, content-type headers, etc, which is summarized into a string, so the string can participate with the rest of the OSI models as byte data.
