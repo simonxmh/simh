@@ -1,15 +1,19 @@
 tags:
   - slug: document
     name: document
-  - slug: mock
-    name: mock
-  - slug: style
-    name: style
-  - slug: license
-    name: license
-  - slug: mdx
-    name: mdx
+  - slug: redis
+    name: redis
+  - slug: kafka
+    name: kafka
+  - slug: database
+    name: database
+  - slug: osimodel
+    name: osimodel
   - slug: markdown
     name: markdown
   - slug: servicemesh
     name: servicemesh
+  - slug: grpc
+    name: grpc
+  - slug: protocol
+    name: protocol
