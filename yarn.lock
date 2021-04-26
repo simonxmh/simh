@@ -75,7 +75,7 @@
     "invariant" "^2.2.4"
     "semver" "^5.5.0"
 
-"@babel/core@^7.1.0", "@babel/core@^7.7.5", "@babel/core@^7.9.0":
+"@babel/core@^7.0.0", "@babel/core@^7.0.0-0", "@babel/core@^7.1.0", "@babel/core@^7.10.5", "@babel/core@^7.7.5", "@babel/core@^7.9.0":
   "integrity" "sha512-XqF7F6FWQdKGGWAzGELL+aCO1p+lRY5Tj5/tbT3St1G8NaH70jhhDIKknIZaDans0OQBG5wRAldROLHSt44BgQ=="
   "resolved" "https://registry.npmjs.org/@babel/core/-/core-7.11.1.tgz"
   "version" "7.11.1"
@@ -2027,7 +2027,7 @@
   "resolved" "https://registry.npmjs.org/ajv-keywords/-/ajv-keywords-3.5.2.tgz"
   "version" "3.5.2"
 
-"ajv@^6.1.0", "ajv@^6.10.2", "ajv@^6.12.0", "ajv@^6.12.3":
+"ajv@^6.1.0", "ajv@^6.10.2", "ajv@^6.12.0", "ajv@^6.12.3", "ajv@^6.9.1", "ajv@>=5.0.0":
   "integrity" "sha512-4K0cK3L1hsqk9xIb2z9vs/XU+PGJZ9PNpJRDS9YLzmNdX6jmVPfamLvTJr0aDAusnHyCHO6MjzlkAsgtqp9teA=="
   "resolved" "https://registry.npmjs.org/ajv/-/ajv-6.12.3.tgz"
   "version" "6.12.3"
@@ -5456,7 +5456,7 @@
     "jest-regex-util" "^26.0.0"
     "jest-snapshot" "^26.3.0"
 
-"jest-resolve@^26.3.0":
+"jest-resolve@*", "jest-resolve@^26.3.0":
   "integrity" "sha512-+oKVWDkXjdZ4Xciuxv+M5e5v/Z3RLjrKIzen9tq3IO6HpzsLf9Mk3rET5du1uU8iVUCvz4/1PmjzNF50Uc7l2A=="
   "resolved" "https://registry.npmjs.org/jest-resolve/-/jest-resolve-26.3.0.tgz"
   "version" "26.3.0"
@@ -5611,7 +5611,7 @@
     "merge-stream" "^2.0.0"
     "supports-color" "^6.1.0"
 
-"jest@^26.3.0":
+"jest@^26.3.0", "jest@>=26 <27":
   "integrity" "sha512-LFCry7NS6bTa4BUGUHC+NvZ3B9WG7Jv8F+Lb96dAJFM23LMwSsL5RiJcw9S+nejsh8lS1VxHq+RSH4Xa9tujpA=="
   "resolved" "https://registry.npmjs.org/jest/-/jest-26.3.0.tgz"
   "version" "26.3.0"
@@ -7526,7 +7526,7 @@
     "randombytes" "^2.0.5"
     "safe-buffer" "^5.1.0"
 
-"react-dom@16.13.1":
+"react-dom@^15.0.0 || ^16.0.0", "react-dom@^16.0.0 || ^15.0.0 || ~0.14.0", "react-dom@^16.0.0-0", "react-dom@^16.2.0", "react-dom@^16.6.0", "react-dom@^16.9.0", "react-dom@16.13.1":
   "integrity" "sha512-81PIMmVLnCNLO/fFOQxdQkvEq/+Hfpv24XNJfpyZhTRfO0QcmQIF/PgCa1zCOj2w1hrn12MFLyaJ/G0+Mxtfag=="
   "resolved" "https://registry.npmjs.org/react-dom/-/react-dom-16.13.1.tgz"
   "version" "16.13.1"
@@ -7616,7 +7616,7 @@
     "prop-types" "15.7.2"
     "youtube-player" "5.5.2"
 
-"react@16.13.1":
+"react@^0.14 || ^15.0.0 || ^16.0.0-alpha", "react@^0.14.0", "react@^15.0.0 || ^16.0.0", "react@^15.6.1", "react@^16.0.0 || ^15.0.0 || ~0.14.0", "react@^16.0.0-0", "react@^16.13.1", "react@^16.2.0", "react@^16.6.0", "react@^16.8.0", "react@^16.9.0", "react@>= 0.14.0", "react@>= 0.14.0 < 17.0.0-0", "react@>=0.14.1", "react@0.13.x || 0.14.x || ^15.0.0-0 || ^16.0.0-0", "react@15.x.x || 16.x.x", "react@16.13.1":
   "integrity" "sha512-YMZQQq32xHLX0bz5Mnibv1/LHb3Sqzngu7xstSM+vrkE5Kzr9xE0yMByK5kMoTK30YVJE61WfbxIFFvfeDKT1w=="
   "resolved" "https://registry.npmjs.org/react/-/react-16.13.1.tgz"
   "version" "16.13.1"
@@ -7625,7 +7625,7 @@
     "object-assign" "^4.1.1"
     "prop-types" "^15.6.2"
 
-"react@16.2.0":
+"react@^16.0.0", "react@16.2.0":
   "integrity" "sha512-ZmIomM7EE1DvPEnSFAHZn9Vs9zJl5A9H7el0EGTE6ZbW9FKe/14IYAlPbC8iH25YarEQxZL+E8VW7Mi7kfQrDQ=="
   "resolved" "https://registry.npmjs.org/react/-/react-16.2.0.tgz"
   "version" "16.2.0"
@@ -7856,7 +7856,7 @@
     "stealthy-require" "^1.1.1"
     "tough-cookie" "^2.3.3"
 
-"request@^2.88.2":
+"request@^2.34", "request@^2.88.2":
   "integrity" "sha512-MsvtOrfG9ZcrOwAW+Qi+F6HbD0CWXEh9ou77uOb7FM2WPhwT7smM833PzanhJLsgXjN89Ir6V2PczXNnMpwKhw=="
   "resolved" "https://registry.npmjs.org/request/-/request-2.88.2.tgz"
   "version" "2.88.2"
@@ -8086,7 +8086,7 @@
     "loose-envify" "^1.1.0"
     "object-assign" "^4.1.1"
 
-"schema-dts@^0.6.0":
+"schema-dts@^0.6.0", "schema-dts@>=0.3.1":
   "integrity" "sha512-mYfPlwuIssnlBkqcwalddhJp23grXIlpI9sDBQuTzM46pftdzXGhbMMzwoszuWZHsH5Zki+LVDeMKjTPRWiAlw=="
   "resolved" "https://registry.npmjs.org/schema-dts/-/schema-dts-0.6.0.tgz"
   "version" "0.6.0"
@@ -8688,7 +8688,7 @@
   "resolved" "https://registry.npmjs.org/stylis-rule-sheet/-/stylis-rule-sheet-0.0.10.tgz"
   "version" "0.0.10"
 
-"stylis@^3.4.0", "stylis@3.5.4":
+"stylis@^3.4.0", "stylis@^3.5.0", "stylis@3.5.4", "stylis@3.x":
   "integrity" "sha512-8/3pSmthWM7lsPBKv7NXkzn2Uc9W7NotcwGNpJaa3k7WMM1XDCA4MgT5k/8BIexd5ydZdboXtU90XH9Ec4Bv/Q=="
   "resolved" "https://registry.npmjs.org/stylis/-/stylis-3.5.4.tgz"
   "version" "3.5.4"
@@ -9095,7 +9095,7 @@
   "resolved" "https://registry.npmjs.org/typedarray/-/typedarray-0.0.6.tgz"
   "version" "0.0.6"
 
-"typescript@^3.8.3":
+"typescript@^3.4.0", "typescript@^3.8.3", "typescript@>=3.1.6", "typescript@>=3.8 <4.0":
   "integrity" "sha512-BLbiRkiBzAwsjut4x/dsibSTB6yWpwT5qWmC2OfuCg3GgVQCSgMs4vEctYPhsaGtd0AeuuHMkjZ2h2WG8MSzRw=="
   "resolved" "https://registry.npmjs.org/typescript/-/typescript-3.9.7.tgz"
   "version" "3.9.7"
@@ -9476,7 +9476,7 @@
     "source-list-map" "^2.0.0"
     "source-map" "~0.6.1"
 
-"webpack@4.44.0":
+"webpack@^4 || ^5", "webpack@^4.0.0", "webpack@^4.0.0 || ^5.0.0", "webpack@^4.36.0 || ^5.0.0", "webpack@^4.4.0", "webpack@4.44.0":
   "integrity" "sha512-wAuJxK123sqAw31SpkPiPW3iKHgFUiKvO7E7UZjtdExcsRe3fgav4mvoMM7vvpjLHVoJ6a0Mtp2fzkoA13e0Zw=="
   "resolved" "https://registry.npmjs.org/webpack/-/webpack-4.44.0.tgz"
   "version" "4.44.0"
